@@ -1,4 +1,4 @@
-# YTMusicDownloader
+# YouTube/SoundCloud Music Downloader
 
 This Telegram bot allows users to download audio from YouTube and SoundCloud directly in Telegram. When a user sends a YouTube or SoundCloud link, the bot offers to download the audio in MP3 format. The bot also supports searching for music by name: users can type /search or simply send a short query, and the bot will show a list of tracks found on YouTube. After the user selects a track, the bot downloads and sends the audio file.
 
