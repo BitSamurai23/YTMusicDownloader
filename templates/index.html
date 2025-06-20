@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube & SoundCloud Music Downloader</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+        /* --- Moon & Stars Background --- */
+        .background-moon-stars {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        .moon {
+            position: absolute;
+            top: 60px;
+            right: 80px;
+            width: 90px;
+            height: 90px;
+            background: radial-gradient(circle at 30% 30%, #fffbe6 80%, #e0e0e0 100%);
+            border-radius: 50%;
+            box-shadow: 0 0 60px 20px #fffbe6, 0 0 120px 40px #fffbe6;
+            animation: moon-move 10s ease-in-out infinite alternate;
+        }
+        @keyframes moon-move {
+            0% { transform: translateY(0) scale(1); }
+            100% { transform: translateY(-20px) scale(1.03); }
+        }
+        .stars {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 1;
+        }
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            opacity: 0.8;
+            box-shadow: 0 0 6px 2px #fffbe6;
+            animation: twinkle 2.5s infinite alternate;
+        }
+        @keyframes twinkle {
+            0% { opacity: 0.7; }
+            100% { opacity: 1; }
+        }
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, #232526 0%, #414345 100%);
+            color: #fff;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        header {
+            text-align: center;
+            padding: 2.5rem 1rem 1.5rem 1rem;
+            background: rgba(34, 34, 34, 0.7);
+            box-shadow: 0 4px 24px rgba(0,0,0,0.2);
+        }
+        .logo {
+            font-size: 2.2rem;
+            vertical-align: middle;
+            animation: bounce 1.5s infinite alternate;
+        }
+        .subtitle {
+            font-size: 1.2rem;
+            color: #b2bec3;
+            margin-top: 0.5rem;
+        }
+        main {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 60vh;
+            padding: 2rem 1rem;
+        }
+        .card-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: center;
+            width: 100%;
+            max-width: 1200px;
+        }
+        .card {
+            background: rgba(44, 62, 80, 0.95);
+            border-radius: 18px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+            padding: 2rem 1.5rem;
+            min-width: 300px;
+            max-width: 370px;
+            flex: 1 1 320px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            opacity: 0;
+            transform: translateY(40px);
+        }
+        .card h2 {
+            margin-top: 0;
+            color: #00cec9;
+            letter-spacing: 1px;
+        }
+        .card ul {
+            padding-left: 1.2rem;
+        }
+        .card ul.links {
+            list-style: none;
+            padding: 0;
+        }
+        .card ul.links li {
+            margin: 0.7em 0;
+        }
+        .card ul.links a {
+            color: #81ecec;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.2s;
+        }
+        .card ul.links a:hover {
+            color: #00b894;
+            text-decoration: underline;
+        }
+        footer {
+            text-align: center;
+            padding: 1.5rem 0 1rem 0;
+            background: rgba(34, 34, 34, 0.7);
+            font-size: 1rem;
+            letter-spacing: 0.5px;
+        }
+        .heart {
+            color: #e17055;
+            animation: pulse 1.2s infinite alternate;
+        }
+        a {
+            color: #00cec9;
+            transition: color 0.2s;
+        }
+        a:hover {
+            color: #00b894;
+        }
+        @media (max-width: 900px) {
+            .card-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            .card {
+                max-width: 95vw;
+            }
+        }
+        @keyframes bounce {
+            0% { transform: translateY(0);}
+            100% { transform: translateY(-10px);}
+        }
+        @keyframes pulse {
+            0% { transform: scale(1);}
+            100% { transform: scale(1.2);}
+        }
+        .fade-in {
+            opacity: 0;
+            animation: fadeIn 1.2s forwards;
+        }
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+        .slide-up {
+            opacity: 0;
+            transform: translateY(40px);
+            animation: slideUp 1s forwards;
+        }
+        .slide-up.delay-1 {
+            animation-delay: 0.3s;
+        }
+        .slide-up.delay-2 {
+            animation-delay: 0.6s;
+        }
+        @keyframes slideUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="background-moon-stars">
+        <div class="moon"></div>
+        <div class="stars"></div>
+    </div>
+    <header class="fade-in">
+        <h1><span class="logo">🎵</span> YouTube & SoundCloud Music Downloader</h1>
+        <p class="subtitle">Download your favorite music easily from YouTube and SoundCloud via Telegram!</p>
+    </header>
+    <main>
+        <section class="card-container">
+            <div class="card slide-up">
+                <h2>How It Works</h2>
+                <ul>
+                    <li>Send a YouTube or SoundCloud link to the <b>Telegram bot</b>.</li>
+                    <li>Choose your preferred audio format (MP3).</li>
+                    <li>Or search for music by name and download instantly.</li>
+                    <li>Supports multiple languages and checks channel subscription for access.</li>
+                    <li>File size limit: 50MB (Telegram restriction).</li>
+                </ul>
+            </div>
+            <div class="card slide-up delay-1">
+                <h2>Links</h2>
+                <ul class="links">
+                    <li><a href="https://t.me/ytdlploadbot" target="_blank">🤖 Telegram Bot</a></li>
+                    <li><a href="https://t.me/ytdlpdeveloper" target="_blank">📢 Telegram Channel</a></li>
+                    <li><a href="https://bit.ly/ytmusicload" target="_blank">🌐 Web Version (bit.ly/ytmusicload)</a></li>
+                    <li><a href="https://youtubemusicdownloader.lie" target="_blank">🌐 Web Version (youtubemusicdownloader.lie)</a></li>
+                    <li><a href="https://artoflife2303.github.io/miniblog/" target="_blank">📝 Blog (GitHub Pages)</a></li>
+                    <li><a href="https://github.com/ArtOfLife2303" target="_blank">💻 GitHub</a></li>
+                </ul>
+            </div>
+            <div class="card slide-up delay-2">
+                <h2>About the Project</h2>
+                <p>
+                    This project lets you download audio from YouTube and SoundCloud directly in Telegram. It supports searching by song name, multiple languages, and provides copyright warnings. 
+                    <br><br>
+                    <b>Note:</b> Use downloaded content for personal purposes only. For copyright issues, contact <a href="mailto:copyrightytdlpbot@gmail.com">copyrightytdlpbot@gmail.com</a>.
+                </p>
+            </div>
+        </section>
+    </main>
+    <footer class="fade-in">
+        <p>Made with <span class="heart">GitHub Pages</span> by <a href="https://github.com/ArtOfLife2303" target="_blank">BitSamurai</a></p>
+    </footer>
+    <script>
+        // Генерация звёзд
+        const starsContainer = document.querySelector('.stars');
+        if (starsContainer) {
+            for (let i = 0; i < 80; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                const size = Math.random() * 2 + 1;
+                star.style.width = `${size}px`;
+                star.style.height = `${size}px`;
+                star.style.top = `${Math.random() * 100}%`;
+                star.style.left = `${Math.random() * 100}%`;
+                star.style.animationDelay = `${Math.random() * 5}s`;
+                starsContainer.appendChild(star);
+            }
+        }
+        // Animate cards and header/footer on page load
+        window.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.fade-in').forEach(el => {
+                el.style.opacity = 1;
+            });
+            document.querySelectorAll('.slide-up').forEach((el, i) => {
+                setTimeout(() => {
+                    el.style.opacity = 1;
+                    el.style.transform = 'translateY(0)';
+                }, 200 + i * 200);
+            });
+        });
+    </script>
+</body>
+</html>
+
+
