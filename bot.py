@@ -939,3 +939,6 @@ if __name__ == '__main__':
 # Developed and made by BitSamurai.
 
 #Thanks!
+
+
+# If you have any guestions about how code works & more. Text: copyrightytdlpbot@gmail.com
