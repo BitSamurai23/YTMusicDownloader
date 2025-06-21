@@ -17,3 +17,5 @@ All user language preferences are saved and loaded automatically. The bot uses y
 The bot is designed to be user-friendly, multilingual, and compliant with Telegram's policies and copyright requirements.
 
 Created and developed by BitSamurai.
+
+t.me/ytdlpload_bot
