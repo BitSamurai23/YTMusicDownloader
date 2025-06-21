@@ -50,5 +50,10 @@ For questions, suggestions, or copyright concerns, you can contact the developer
 💻 GitHub: github.com/BitSamurai23/YTMusicDownloader
 📝 Blog: artoflife2303.github.io/miniblog/
 
+
+Written by BitSamurai. 
+Last changes: 22.06.2025
+
+
 This bot is designed to be fast, safe, multilingual, and fully compliant with Telegram’s policies and copyright requirements.
 Enjoy your music experience with just a few taps! 🎧
